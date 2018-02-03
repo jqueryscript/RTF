@@ -10,84 +10,260 @@
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link href="myCss.css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+  <link href="myCss.css" rel="stylesheet" />
   <style>
     body {
       margin: 0;
       padding: 0;
       background-color: #f9f9f9;
-      color: #a7a5a5;
+      color: #232323;
       font-family: "微软雅黑";
     }
-
   </style>
 </head>
 
 <body>
-  <div class="Eleditor-textStyle">
-  <div class="Eleditor-textStyle-item">
-    <div class="Eleditor-textStyle-bold">
-    </div>
-  </div>
-  <div class="Eleditor-textStyle-item">
-    <div class="Eleditor-textStyle-color">
-      <span style="">
-      </span>
-    </div>
-  </div>
-  <div class="Eleditor-textStyle-item">
-    <div class="Eleditor-textStyle-linedecoration">
-    </div>
-  </div>
-  <div class="Eleditor-textStyle-item">
-    <div class="Eleditor-textStyle-bgColor">
-    </div>
-  </div>
-  <div class="Eleditor-textStyle-item">
-    <div class="Eleditor-textStyle-fontSize">
-    </div>
-  </div>
-  <div class="Eleditor-textStyle-item">
-    <div class="Eleditor-textStyle-lineHeight">
-    </div>
-  </div>
-  <div class="Eleditor-textStyle-item">
-    <div class="Eleditor-textStyle-align Eleditor-textStyle-alignLeft" align="left">
-    </div>
-  </div>
-  <div class="Eleditor-textStyle-item">
-    <div class="Eleditor-textStyle-align Eleditor-textStyle-alignCenter" align="center">
-    </div>
-  </div>
-  <div class="Eleditor-textStyle-item">
-    <div class="Eleditor-textStyle-align Eleditor-textStyle-alignRight" align="right">
-    </div>
-  </div>
-  <div class="Eleditor-textStyle-item Eleditor-textStyle-item-upImg webuploader-container"
-  style="display: block;">
-    <div class="webuploader-pick">
-      <div class="Eleditor-textStyle-upImg">
+  <div class="wrapper">
+    <div id="textStyle-container1"></div>
+    <div id="textStyle-container2">
+      <div class="editor-textStyle">
+        <div class="editor-textStyle-item">
+          <div class="editor-textStyle-bold" dataStyle="font-weight" dataStyleRS="800">
+          </div>
+        </div>
+        <div class="editor-textStyle-item">
+          <div class="editor-textStyle-color" dataStyle="color" dataStyleRS="">
+            <span>
+            </span>
+          </div>
+        </div>
+        <div class="editor-textStyle-item">
+          <div class="editor-textStyle-linedecoration" dataStyle="text-decoration" dataStyleRS="">
+          </div>
+        </div>
+        <div class="editor-textStyle-item">
+          <div class="editor-textStyle-bgColor" dataStyle="background-color">
+          </div>
+        </div>
+        <div class="editor-textStyle-item">
+          <div class="editor-textStyle-fontSize" dataStyle="font-size">
+          </div>
+        </div>
+        <div class="editor-textStyle-item">
+          <div class="editor-textStyle-lineHeight" dataStyle="line-height">
+          </div>
+        </div>
+        <div class="editor-textStyle-item">
+          <div class="editor-textStyle-align editor-textStyle-alignLeft" align="left" dataStyle="text-align" dataStyleRS="left">
+          </div>
+        </div>
+        <div class="editor-textStyle-item">
+          <div class="editor-textStyle-align editor-textStyle-alignCenter" align="center" dataStyle="text-align" dataStyleRS="center">
+          </div>
+        </div>
+        <div class="editor-textStyle-item">
+          <div class="editor-textStyle-align editor-textStyle-alignRight" align="right" dataStyle="text-align" dataStyleRS="right">
+          </div>
+        </div>
       </div>
-    </div>
-    <div id="rt_rt_1c5dbd5nv1fornfp1knnb5crkt4" style="position: absolute; top: 50px; left: 50px; width: 24px; height: 24px; overflow: hidden; bottom: auto; right: auto;">
-      <input type="file" name="file" class="webuploader-element-invisible" multiple="multiple"
-      accept="image/gif,image/jpg,image/jpeg,image/bmp,image/png,image/webp">
-      <label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);">
-      </label>
+      <div class="editor-textarea" id="editor-textarea" oninput="userInput()" contenteditable="true" spellcheck="true"></div>
+      <div class="editor-options"></div>
     </div>
   </div>
-</div>
- <div class="Eleditor-inputarea">
-     <div class="textarea" contenteditable="true"></div>						
- </div>
+
+  <div class="editor-textEditor-formats">
+    <div class="editor-textEditor-format" onclick="clearEditor()"></div>
+    <div class="editor-textEditor-clean" onclick="OKEditor()"></div>
+  </div>
   <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js">
   </script>
   <script>
-      $(function () {
-          $(".Eleditor-textStyle-item div").click(function () {
-              $(this).toggleClass("Eleditor-active");
+    var clientHeight = document.documentElement.clientHeight;
+    $(window).on('resize', function () {
+      var nowClientHeight = document.documentElement.clientHeight;
+      if (clientHeight > nowClientHeight) {
+        //键盘弹出的事件处理
+        resizeHeight();
+      } else {
+        //键盘收起的事件处理
+        resizeHeight();
+      }
+    });
+    $(function () {
+      resizeHeight();
+      $(".editor-textStyle-item div").click(function () {
+        var target = this;
+        if ($(target).hasClass("editor-textStyle-color")) { //editor-textStyle-color颜色--------------------------------------------------------------------------------------------------------------
+          var styleArr = ["#232323", "#2196F3", "#795548", "#00BCD4", "#4CAF50", "#E666E5", "#FF9800", "#FF5722", "#ff2a1a", "#ff2a1a", "#FFEB3B", "#fff"];
+          var Str = "", borderStr = "";
+          for (e in styleArr) {
+            if (styleArr[e] == "#fff") {
+              borderStr = "border:1px solid #e4e4e4;"
+            }
+            Str += "<li><span class='textStyle-color-span' style='background-color:" + styleArr[e] + ";" + borderStr + "'></span></li>";
+          }
+          //打开
+          var h = $(window).height() / 2;
+          $(".editor-options").fadeIn(200).html("<div class='optsHead' style='margin: 10px 13px;border-bottom: 1px solid #ccc;padding-bottom: 10px;'>文字颜色<span class='removeOpts' style='float:right;'>重置</span></div><ul style='height:" + Number(h - 33) + "px'>" + Str + "<li style='clear:both;'></li></ul>");
+          $(".textStyle-color-span").click(function (i, n) {
+            $(".editor-options").fadeOut(200);
+            $(target).attr("dataStyleRS", $(this).css('background-color'));
+            $(target).addClass("editor-active");
+            userInput();
           })
+          //关闭
+          $(".removeOpts").click(function () {
+            $(".editor-options").fadeOut(200);
+            $(target).attr("dataStyleRS", "#232323");
+            $(target).removeClass("editor-active");
+            userInput();
+          })
+        } else if ($(target).hasClass("editor-textStyle-linedecoration")) { //editor-textStyle-linedecoration文字样式-------------------------------------------------------
+          var styleArr = ["overline", "line-through", "underline"];
+          var Str = "";
+          for (e in styleArr) {
+            Str += "<li class='textStyle-linedecoration-li' style='width:100%;padding-top: 20px;padding-bottom: 20px;border-bottom: 1px solid #ccc;text-decoration-line:" + styleArr[e] + ";'>文字修饰</li>";
+          }
+          //打开
+          var h = $(window).height() / 2;
+          $(".editor-options").fadeIn(200).html("<div style='margin: 10px 13px;border-bottom: 1px solid #ccc;padding-bottom: 10px;'>文字修饰<span class='removeOpts' style='float:right;'>重置</span></div><ul style='height:" + Number(h - 33) + "px;margin: 0 13px;'>" + Str + "<li style='clear:both;'></li></ul>");
+          $(".textStyle-linedecoration-li").click(function (i, n) {
+            $(".editor-options").fadeOut(200);
+            $(target).attr("dataStyleRS", $(this).css('text-decoration-line'));
+            $(target).addClass("editor-active");
+            userInput();
+          })
+          //关闭
+          $(".removeOpts").click(function () {
+            $(".editor-options").fadeOut(200);
+            $(target).attr("dataStyleRS", "none");
+            $(target).removeClass("editor-active");
+            userInput();
+          })
+        } else if ($(target).hasClass("editor-textStyle-bgColor")) { //editor-textStyle-bgColor  背景色---------------------------------------------------------------------------------------
+          var styleArr = ["#232323", "#2196F3", "#795548", "#00BCD4", "#4CAF50", "#E666E5", "#FF9800", "#FF5722", "#ff2a1a", "#ff2a1a", "#FFEB3B", "#fff"];
+          var Str = "", borderStr = "";
+          for (e in styleArr) {
+            if (styleArr[e] == "#fff") {
+              borderStr = "border:1px solid #e4e4e4;"
+            }
+            Str += "<li><span class='textStyle-color-span' style='background-color:" + styleArr[e] + ";" + borderStr + "'></span></li>";
+          }
+          //打开
+          var h = $(window).height() / 2;
+          $(".editor-options").fadeIn(200).html("<div class='optsHead' style='margin: 10px 13px;border-bottom: 1px solid #ccc;padding-bottom: 10px;'>背景色<span class='removeOpts' style='float:right;'>重置</span></div><ul style='height:" + Number(h - 33) + "px'>" + Str + "<li style='clear:both;'></li></ul>");
+          $(".textStyle-color-span").click(function (i, n) {
+            $(".editor-options").fadeOut(200);
+            $(target).attr("dataStyleRS", $(this).css('background-color'));
+            $(target).addClass("editor-active");
+            userInput();
+          })
+          //关闭
+          $(".removeOpts").click(function () {
+            $(".editor-options").fadeOut(200);
+            $(target).attr("dataStyleRS", "white");
+            $(target).removeClass("editor-active");
+            userInput();
+          })
+        } else if ($(target).hasClass("editor-textStyle-fontSize")) { //editor-textStyle-fontSize文字大小-------------------------------------------------------
+          var styleArr = ["12px", "14px", "16px", "18px", "20px", "25px", "30px"];
+          var Str = "";
+          for (e in styleArr) {
+            Str += "<li class='textStyle-linedecoration-li' style='width:100%;padding-top: 20px;padding-bottom: 20px;border-bottom: 1px solid #ccc;font-size:" + styleArr[e] + ";'>" + styleArr[e] + "</li>";
+          }
+          //打开
+          var h = $(window).height() / 2;
+          $(".editor-options").fadeIn(200).html("<div style='margin: 10px 13px;border-bottom: 1px solid #ccc;padding-bottom: 10px;'>字体大小<span class='removeOpts' style='float:right;'>重置</span></div><ul style='height:" + Number(h - 33) + "px;margin: 0 13px;'>" + Str + "<li style='clear:both;'></li></ul>");
+          $(".textStyle-linedecoration-li").click(function (i, n) {
+            $(".editor-options").fadeOut(200);
+            $(target).attr("dataStyleRS", $(this).text());
+            $(target).addClass("editor-active");
+            userInput();
+          })
+          //关闭
+          $(".removeOpts").click(function () {
+            $(".editor-options").fadeOut(200);
+            $(target).attr("dataStyleRS", "14px");
+            $(target).removeClass("editor-active");
+            userInput();
+          })
+        } else if ($(target).hasClass("editor-textStyle-lineHeight")) { //editor-textStyle-lineHeight行高-------------------------------------------------------
+          var styleArr = ["20px", "25px", "30px", "35px", "45px"];
+          var Str = "";
+          for (e in styleArr) {
+            Str += "<li class='textStyle-linedecoration-li' style='width:100%;padding-top: 20px;padding-bottom: 20px;border-bottom: 1px solid #ccc;'>" + styleArr[e] + "</li>";
+          }
+          //打开
+          var h = $(window).height() / 2;
+          $(".editor-options").fadeIn(200).html("<div style='margin: 10px 13px;border-bottom: 1px solid #ccc;padding-bottom: 10px;'>行高<span class='removeOpts' style='float:right;'>重置</span></div><ul style='height:" + Number(h - 33) + "px;margin: 0 13px;'>" + Str + "<li style='clear:both;'></li></ul>");
+          $(".textStyle-linedecoration-li").click(function (i, n) {
+            $(".editor-options").fadeOut(200);
+            $(target).attr("dataStyleRS", $(this).text());
+            $(target).addClass("editor-active");
+            userInput();
+          })
+          //关闭
+          $(".removeOpts").click(function () {
+            $(".editor-options").fadeOut(200);
+            $(target).attr("dataStyleRS", "14px");
+            $(target).removeClass("editor-active");
+            userInput();
+          })
+        } else if ($(target).hasClass("editor-textStyle-align")) { //editor-textStyle-align水平-------------------------------------------------------
+          $(".editor-textStyle-align").removeClass("editor-active");
+          $(this).addClass("editor-active");
+          userInput();
+        } else { //其他--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+          $(target).toggleClass("editor-active");
+          userInput();
+        }
       })
+    })
+    function resizeHeight() {
+      var h = $(window).height() / 2;
+      $("#textStyle-container1").animate({height:h + "px"});
+      $("#textStyle-container2").animate({height:h + "px"});
+      $("#editor-textarea").height(h - $(".editor-textStyle").height() + "px");
+    }
+    function userInput(e) {
+      var obj = {};
+      $(".editor-textStyle-item div").each(function () {
+        if ($(this).hasClass("editor-textStyle-align")) { //editor-textStyle-align水平
+          if ($(this).hasClass("editor-active")) {
+            obj["text-align"] = $(this).attr("dataStyleRS");
+          }
+        } else if ($(this).hasClass("editor-textStyle-bold")) { //editor-textStyle-bold水平
+          if ($(this).hasClass("editor-active")) {
+            obj["font-weight"] = $(this).attr("dataStyleRS");
+          } else {
+            obj["font-weight"] = 400;
+          }
+        } else {
+          obj[$(this).attr("dataStyle")] = $(this).attr("dataStyleRS");
+        }
+      })
+      console.log(obj);
+      if(e=="1"){
+        return obj;
+      }else{
+        $("#editor-textarea").css(obj);
+      }
+    }
+    function clearEditor(){
+      $('#editor-textarea').empty();
+      $('#editor-textarea').css("background-color","#fff");
+    }
+    function OKEditor(){
+      var length = $(".editorpart").length;
+      if(userInput(1)["text-align"]!=undefined&&userInput(1)["text-align"]!="left"){
+        $("#textStyle-container1").append("<p class='editorpart' style='display:none;'>"+$('#editor-textarea').html()+"</p>");
+      }else{
+        $("#textStyle-container1").append("<span class='editorpart' style='display:none;'>"+$('#editor-textarea').html()+"</span>");
+      }
+      $(".editorpart").eq(length).css(userInput(1)).fadeIn();
+      clearEditor();
+    }
   </script>
 </body>
 
