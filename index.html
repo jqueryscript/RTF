@@ -106,8 +106,7 @@
             Str += "<li><span class='textStyle-color-span' style='background-color:" + styleArr[e] + ";" + borderStr + "'></span></li>";
           }
           //打开
-          var h = $(window).height() / 2;
-          $(".editor-options").fadeIn(200).html("<div class='optsHead' style='margin: 10px 13px;border-bottom: 1px solid #ccc;padding-bottom: 10px;'>文字颜色<span class='removeOpts' style='float:right;'>重置</span></div><ul style='height:" + Number(h - 33) + "px'>" + Str + "<li style='clear:both;'></li></ul>");
+          $(".editor-options").fadeIn(200).html("<div class='optsHead' style='margin: 10px 13px;border-bottom: 1px solid #ccc;padding-bottom: 10px;'>文字颜色<span class='removeOpts' style='float:right;'>重置</span></div><ul>" + Str + "<li style='clear:both;'></li></ul>");
           $(".textStyle-color-span").click(function (i, n) {
             $(".editor-options").fadeOut(200);
             $(target).attr("dataStyleRS", $(this).css('background-color'));
@@ -128,8 +127,7 @@
             Str += "<li class='textStyle-linedecoration-li' style='width:100%;padding-top: 20px;padding-bottom: 20px;border-bottom: 1px solid #ccc;text-decoration-line:" + styleArr[e] + ";'>文字修饰</li>";
           }
           //打开
-          var h = $(window).height() / 2;
-          $(".editor-options").fadeIn(200).html("<div style='margin: 10px 13px;border-bottom: 1px solid #ccc;padding-bottom: 10px;'>文字修饰<span class='removeOpts' style='float:right;'>重置</span></div><ul style='height:" + Number(h - 33) + "px;margin: 0 13px;'>" + Str + "<li style='clear:both;'></li></ul>");
+          $(".editor-options").fadeIn(200).html("<div style='margin: 10px 13px;border-bottom: 1px solid #ccc;padding-bottom: 10px;'>文字修饰<span class='removeOpts' style='float:right;'>重置</span></div><ul style='margin: 0 13px;'>" + Str + "<li style='clear:both;'></li></ul>");
           $(".textStyle-linedecoration-li").click(function (i, n) {
             $(".editor-options").fadeOut(200);
             $(target).attr("dataStyleRS", $(this).css('text-decoration-line'));
@@ -153,8 +151,7 @@
             Str += "<li><span class='textStyle-color-span' style='background-color:" + styleArr[e] + ";" + borderStr + "'></span></li>";
           }
           //打开
-          var h = $(window).height() / 2;
-          $(".editor-options").fadeIn(200).html("<div class='optsHead' style='margin: 10px 13px;border-bottom: 1px solid #ccc;padding-bottom: 10px;'>背景色<span class='removeOpts' style='float:right;'>重置</span></div><ul style='height:" + Number(h - 33) + "px'>" + Str + "<li style='clear:both;'></li></ul>");
+          $(".editor-options").fadeIn(200).html("<div class='optsHead' style='margin: 10px 13px;border-bottom: 1px solid #ccc;padding-bottom: 10px;'>背景色<span class='removeOpts' style='float:right;'>重置</span></div><ul>" + Str + "<li style='clear:both;'></li></ul>");
           $(".textStyle-color-span").click(function (i, n) {
             $(".editor-options").fadeOut(200);
             $(target).attr("dataStyleRS", $(this).css('background-color'));
@@ -175,8 +172,7 @@
             Str += "<li class='textStyle-linedecoration-li' style='width:100%;padding-top: 20px;padding-bottom: 20px;border-bottom: 1px solid #ccc;font-size:" + styleArr[e] + ";'>" + styleArr[e] + "</li>";
           }
           //打开
-          var h = $(window).height() / 2;
-          $(".editor-options").fadeIn(200).html("<div style='margin: 10px 13px;border-bottom: 1px solid #ccc;padding-bottom: 10px;'>字体大小<span class='removeOpts' style='float:right;'>重置</span></div><ul style='height:" + Number(h - 33) + "px;margin: 0 13px;'>" + Str + "<li style='clear:both;'></li></ul>");
+          $(".editor-options").fadeIn(200).html("<div style='margin: 10px 13px;border-bottom: 1px solid #ccc;padding-bottom: 10px;'>字体大小<span class='removeOpts' style='float:right;'>重置</span></div><ul style='margin: 0 13px;'>" + Str + "<li style='clear:both;'></li></ul>");
           $(".textStyle-linedecoration-li").click(function (i, n) {
             $(".editor-options").fadeOut(200);
             $(target).attr("dataStyleRS", $(this).text());
@@ -197,8 +193,7 @@
             Str += "<li class='textStyle-linedecoration-li' style='width:100%;padding-top: 20px;padding-bottom: 20px;border-bottom: 1px solid #ccc;'>" + styleArr[e] + "</li>";
           }
           //打开
-          var h = $(window).height() / 2;
-          $(".editor-options").fadeIn(200).html("<div style='margin: 10px 13px;border-bottom: 1px solid #ccc;padding-bottom: 10px;'>行高<span class='removeOpts' style='float:right;'>重置</span></div><ul style='height:" + Number(h - 33) + "px;margin: 0 13px;'>" + Str + "<li style='clear:both;'></li></ul>");
+          $(".editor-options").fadeIn(200).html("<div style='margin: 10px 13px;border-bottom: 1px solid #ccc;padding-bottom: 10px;'>行高<span class='removeOpts' style='float:right;'>重置</span></div><ul style='margin: 0 13px;'>" + Str + "<li style='clear:both;'></li></ul>");
           $(".textStyle-linedecoration-li").click(function (i, n) {
             $(".editor-options").fadeOut(200);
             $(target).attr("dataStyleRS", $(this).text());
@@ -224,8 +219,8 @@
     })
     function resizeHeight() {
       var h = $(window).height() / 2;
-      $("#textStyle-container1").animate({height:h + "px"});
-      $("#textStyle-container2").animate({height:h + "px"});
+      $("#textStyle-container1").css("height",h + "px");
+      $("#textStyle-container2").css("height",h + "px");;
       $("#editor-textarea").height(h - $(".editor-textStyle").height() + "px");
     }
     function userInput(e) {
