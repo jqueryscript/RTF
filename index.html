@@ -87,6 +87,7 @@
       if (clientHeight > nowClientHeight) {
         //键盘弹出的事件处理
         resizeHeight();
+
       } else {
         //键盘收起的事件处理
         resizeHeight();
@@ -222,6 +223,7 @@
       $("#textStyle-container1").css("height",h + "px");
       $("#textStyle-container2").css("height",h + "px");;
       $("#editor-textarea").height(h - $(".editor-textStyle").height() + "px");
+      $(".editor-options").css("bottom","0px")
     }
     function userInput(e) {
       var obj = {};
