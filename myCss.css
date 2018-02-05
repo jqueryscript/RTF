@@ -180,7 +180,7 @@
 .editorpartOpts{
     list-style: none;
     position: absolute;
-    top: 10px;
+    top: 12px;
     left: 0;
     padding: 0;
     z-index: 9999;
@@ -199,7 +199,6 @@
     padding: 10px 8px;
     font-size: 17px;
     border: 1px solid #eaeaea;
-    margin-top: 2px;
     color:#232323;
     font-weight: 800;
 }
