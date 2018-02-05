@@ -1,7 +1,12 @@
 #textStyle-container1,#editor-textarea{
     overflow: auto;
-    width: 97%;
-    margin: 5px auto;
+    width: 100%;
+    padding: 8px;
+    -moz-box-sizing: border-box;  /*Firefox3.5+*/
+    -webkit-box-sizing: border-box; /*Safari3.2+*/
+    -o-box-sizing: border-box; /*Opera9.6*/
+    -ms-box-sizing: border-box; /*IE8*/
+    box-sizing: border-box;
 }
 #textStyle-container2{
     position:relative;
@@ -167,6 +172,46 @@
     background-position-x: 12px;
     background-position-y: center;
     position: absolute;
+}
+
+.editorpart{
+    position:relative;
+}
+.editorpartOpts{
+    list-style: none;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    padding: 0;
+    z-index: 9999;
+    background-color: white;
+}
+.editorpartOpts li{
+    text-align: center;
+    -moz-box-sizing: border-box;  /*Firefox3.5+*/
+    -webkit-box-sizing: border-box; /*Safari3.2+*/
+    -o-box-sizing: border-box; /*Opera9.6*/
+    -ms-box-sizing: border-box; /*IE8*/
+    box-sizing: border-box;
+    border-radius: 3px;
+    white-space: nowrap;
+    min-width: 118px;
+    padding: 10px 8px;
+    font-size: 17px;
+    border: 1px solid #eaeaea;
+    margin-top: 2px;
+    color:#232323;
+    font-weight: 800;
+}
+.editorpartOpts li:hover{
+    background-color:#eaeaea;
+}
+#textStyle-container1 .editor-active {
+    background-color: #FFE69F!important;
+    padding: 0;
+    border: 1px solid #DCAC6C;
+    border-radius: 3px;
+    box-sizing: border-box;
 }
 
 
