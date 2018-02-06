@@ -122,6 +122,7 @@
     background: #fff;
     display: none;
     overflow: auto;
+    z-index: 77777777;
 }
 .editor-options ul li span {
     width: 40px;
