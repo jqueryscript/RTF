@@ -284,7 +284,8 @@
           if ($(this).text() == "after") {
             $("#editor-textarea").empty().focus();
           }else if ($(this).text() == "line") {
-              $("#editor-textarea").html("<hr>").focus();
+              $("#editor-textarea").html("<hr>");
+              OKEditor();
           } else if ($(this).text() == "delete") {
             $(this).parent().parent().remove();
             reNumber();
