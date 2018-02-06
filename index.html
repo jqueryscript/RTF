@@ -281,7 +281,7 @@
         $(this).append("<ul class='editorpartOpts'><li>after</li><li>line</li><li>delete</li><li>cancel</li></ul>");
         $(".editorpartOpts li").click(function () {
           event.stopPropagation();//阻止事件冒泡即可
-          if ($(this).text() == "after ") {
+          if ($(this).text() == "after") {
             $("#editor-textarea").empty().focus();
           }else if ($(this).text() == "line") {
             $("#textStyle-container1 .editor-active").after("<hr />");
