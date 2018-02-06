@@ -10,7 +10,8 @@
 }
 #textStyle-container2{
     position:relative;
-    overflow: hidden
+    overflow: hidden;
+    border-bottom: 1px solid #eeeeee;
 }
 
 .editor-textStyle {
